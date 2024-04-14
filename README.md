@@ -21,6 +21,7 @@ NOTE// for my purposes, I must handle Y values before X values so I am working w
 X will start, meaning every ODD cycle iteration is player X's turn
 O will go second, meaning every EVEN cycle iteration is player X's turn
 The game will place the User's X or O according to the users input. 
+An X or O cannot be placed where there is already an X or an O. 
 The grid updates and it is time for the other user to make their turn. 
 This repeats until the game is won or drawn (no user can win or place any more markers)
 On either case, the game is offered to either be played again or 
