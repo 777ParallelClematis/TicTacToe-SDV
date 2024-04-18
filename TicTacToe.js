@@ -17,7 +17,7 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
 //boardReveal() // for testing as I go
 //rl. close() // for testing as I go
 
-function getUserCoordinates() {
-    rl.question("")
+function getUserCoordinatePlacement() {
+    rl.question(`${currentPlayer}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`)
 }
 
