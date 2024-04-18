@@ -17,9 +17,28 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
 //boardReveal() // for testing as I go
 //rl. close() // for testing as I go
 
+function gameStart() {
+    console.log("Welcome to the wonderful world of TIC TAC TOE! \n  
+    Prepare to have your heart set on fire as you duel to discover the superior Tic-Tac-Toe-er " 
+    
+)
+}
+
+
 function getUserCoordinatePlacement() {
-    rl.question(`${currentPlayer}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`), (input) => {
-        const [row, col] = input.splice(" ").map
-    }
+    rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`), (input) => {
+        const [row, col] = input.splice(" ").map(num => parseInt(num))
+
+if (isNaN(row) | isNaN(col)) // conditions for rejecting user input
+    } else { // conditions for accepting user input. Where this input goes. 
+        board[row][column] = currentUser
+        boardReveal()
+        if(winCheck()) {
+            console.log("You Win! Play again?")
+            rl.close()
+        } else if (fullBoard()) {
+            console.log ("No winner, its a draw, Try again")
+        }
+}
 }
 
