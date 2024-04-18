@@ -11,7 +11,7 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
  ];
 // function to reveal the board. 
  function boardReveal() {
-    console.log(board.map(row => row.join ("|")).join("\n --- \n"))
+    console.log(board.map(row => row.join (" | ")).join("\n---------\n"))
  }
 boardReveal()
 rl. close()
