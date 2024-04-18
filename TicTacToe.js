@@ -4,3 +4,8 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
     input: process.stdin, // enables input to happen - 
     output: process.stdout // enables output to happen
 })
+ let board = [
+    [["-"], ["-"], ["-"]],
+    [["-"], ["-"], ["-"]],
+    [["-"], ["-"], ["-"]], 
+ ];
