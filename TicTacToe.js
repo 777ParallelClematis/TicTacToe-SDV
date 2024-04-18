@@ -17,11 +17,10 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
 //boardReveal() // for testing as I go
 //rl. close() // for testing as I go
 
-function gameStart() {
-    console.log("Welcome to the wonderful world of TIC TAC TOE! \n  
-    Prepare to have your heart set on fire as you duel to discover the superior Tic-Tac-Toe-er " 
-    
-)
+function embark() {
+    console.log("Welcome to the wonderful world of TIC TAC TOE! \n  Prepare to have your heart set on fire \n as you duel to discover the superior Tic-Tac-Toe-er. \n This is a hotseat game. Either practice by playing by yourself against yourself, or ask a friend to join you. \n Have fun!")
+    boardReveal()
+    getUserCoordinatePlacement()
 }
 
 
