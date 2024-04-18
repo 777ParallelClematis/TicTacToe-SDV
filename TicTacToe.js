@@ -18,6 +18,8 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
 //rl. close() // for testing as I go
 
 function getUserCoordinatePlacement() {
-    rl.question(`${currentPlayer}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`)
+    rl.question(`${currentPlayer}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`), (input) => {
+        const [row, col] = input.splice(" ").map
+    }
 }
 
