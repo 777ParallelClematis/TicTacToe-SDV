@@ -1,3 +1,4 @@
+// need to declare all variables here (or is good practice to at least)
 const readline = require('readline'); // Readline is an API that is part of the node.js package
 
 const rl = readline.Interface({ // creates an "instance" of readline - enables it to be used in the rest of the program
@@ -11,7 +12,12 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
  ];
 // function to reveal the board. 
  function boardReveal() {
-    console.log(board.map(row => row.join (" | ")).join("\n---------\n"))
+    console.log(board.map(row => row.join (" | ")).join("\n---------\n"))// first this joins the rows, and then the columns. 
  }
-boardReveal()
-rl. close()
+//boardReveal() // for testing as I go
+//rl. close() // for testing as I go
+
+function getUserCoordinates() {
+    rl.question("")
+}
+
