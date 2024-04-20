@@ -26,12 +26,13 @@ function embark() {
 
 function getUserCoordinatePlacement() {
     rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`), (input) => {
-        const [row, col] = input.splice(" ").map(num => parseInt(num))
-
-if (isNaN(row) | isNaN(col)) // conditions for rejecting user input
+        const [row, col] = input.split(" ").map(num => parseInt(num))
+if (isNaN(row) || isNaN(col) || row <0 || row > 2 || col < 0 || board[row][col] != "-")
+console.log("Invalid move, try again") // conditions for rejecting user input
+getUserCoordinatePlacement()
     } else { // conditions for accepting user input. Where this input goes. 
         board[row][column] = currentUser
-        boardReveal()
+        boardReveal() 
         if(winCheck()) {
             console.log("You Win! Play again?")
             rl.close()
