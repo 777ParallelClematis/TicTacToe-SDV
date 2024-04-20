@@ -14,8 +14,6 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
  function boardReveal() {
     console.log(board.map(row => row.join (" | ")).join("\n---------\n"))// first this joins the rows, and then the columns. 
  }
-//boardReveal() // for testing as I go
-//rl. close() // for testing as I go
 
 function embark() {
     console.log("Welcome to the wonderful world of TIC TAC TOE! \n  Prepare to have your heart set on fire \n as you duel to discover the superior Tic-Tac-Toe-er. \n This is a hotseat game. Either practice by playing by yourself against yourself, or ask a friend to join you. \n Have fun!")
@@ -27,8 +25,8 @@ function embark() {
 function getUserCoordinatePlacement() {
     rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`), (input) => {
         const [row, col] = input.split(" ").map(num => parseInt(num))
-if (isNaN(row) || isNaN(col) || row <0 || row > 2 || col < 0 || board[row][col] != "-")
-console.log("Invalid move, try again") // conditions for rejecting user input
+if (isNaN(row) || isNaN(col) || row <0 || row > 2 || col < 0 || board[row][col] != "-")// conditions for rejecting user input
+console.log("Invalid move, try again. Ensure your coordinates are in the correct format, eg// 1 2") 
 getUserCoordinatePlacement()
     } else { // conditions for accepting user input. Where this input goes. 
         board[row][column] = currentUser
@@ -38,6 +36,10 @@ getUserCoordinatePlacement()
             rl.close()
         } else if (fullBoard()) {
             console.log ("No winner, its a draw, Try again")
+            rl.close()
+        } else {
+            currentUser = currentUser === "X" ? "0" : "X"
+            getUserCoordinatePlacement()
         }
 }
 }
