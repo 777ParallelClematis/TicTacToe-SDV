@@ -18,43 +18,51 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
     console.log(board.map(row => row.join (" | ")).join("\n---------\n"))// first this joins the rows, and then the columns. 
  }
 
- function winCheck() {
-// diagonals, horizontals and verticals
-// verticals "y" value, outer array
-for (let i = 0; i < 3; i++) {
-if (board[0][i] === "X" || "O" && board[1][i] === "X" || "O" && board[2][i])
-return true
-}
-// horizontals "x" value, inner array
-for (let i = 0; i <3; i++) {
- if (board[][] === "X" || "O" && board[][] === "X" || "O" && board[][])
- return true
+ function isBoardFull () {
+    return board.every(row => row.every(cell => cell !=="-"))
+ }
 
-}
-// check diagonals
-for (let i = 0; i <3; i++) {
- if (board[][] === "X" || "O" && board[][] === "X" || "O" && board[][])
-}
+ function winCheck() {
+    // Check verticals
+for (let i = 0; i < 3; i++) {
+if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === "X" || board[0][i] === "O")) {
+return true}
+                            }
+ 
+// Check horizontals
+for (let i = 0; i < 3; i++) {
+if ((board[i][0] === board[i][1] && board[i][1] === board[i][2]) && (board[i][0] === "X" || board[i][0] === "O")) {
+return true}
+                            }
+
+// Check diagonals
+if ((board[0][0] === board[1][1] && board[1][1] === board[2][2] || board[0][2] === board[1][1] && board[1][1] === board[2][0]) &&
+    (board[1][1] === "X" || board[1][1] === "O")) {return true}
+return false;
 }
 
 
 
 function getUserCoordinatePlacement() {
-rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`, (input) => {
-const [row, col] = input.split(" ").map(num => parseInt(num));
-if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || board[row][col] != "-") { // conditions for rejecting user input
+rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please :  `, (input) => {
+    const [row, col] = input.split(" ").map(num => parseInt(num));
+
+    if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || board[row][col] != "-") { // conditions for rejecting user input
 console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g., 1 2");
 getUserCoordinatePlacement();
- } else {// conditions for accepting user input. Where this input goes.
+ } 
+    else {// conditions for accepting user input. Where this input goes.
 board[row-1][col-1] = currentUser; // adjusting for index vs. shown value offset
 boardReveal();
-if (winCheck()) {
+      if (winCheck()) {
 console.log("You Win! Play again?");
 rl.close();
-} else if (fullBoard()) {
+}    
+     else if (isBoardFull()) {
 console.log("No winner, it's a draw, Try again");
 rl.close();
-} else {
+} 
+      else {
 currentUser = currentUser === "X" ? "O" : "X";
 getUserCoordinatePlacement();
 }
