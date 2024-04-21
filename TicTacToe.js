@@ -47,7 +47,7 @@ function getUserCoordinatePlacement() {
 rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please :  `, (input) => {
     const [row, col] = input.split(" ").map(num => parseInt(num));
 
-    if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || board[row][col] != "-") { // conditions for rejecting user input
+    if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || board[row][col] !== "-") { // conditions for rejecting user input
 console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g., 1 2");
 getUserCoordinatePlacement();
  } 
