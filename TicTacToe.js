@@ -12,17 +12,21 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
  ];
 
  let currentUser = "X"
- 
+
 // function to reveal the board. 
  function boardReveal() {
     console.log(board.map(row => row.join (" | ")).join("\n---------\n"))// first this joins the rows, and then the columns. 
  }
 
-function embark() {
-    console.log("Welcome to the wonderful world of TIC TAC TOE! \n  Prepare to have your heart set on fire \n as you duel to discover the superior Tic-Tac-Toe-er. \n This is a hotseat game. Either practice by playing by yourself against yourself, or ask a friend to join you. \n Have fun!")
-    boardReveal()
-    getUserCoordinatePlacement()
+ function winCheck() {
+// diagonals, horizontals and verticals
+// verticals 
+while winCheck() {
+    
+for (let i = 0; i < 3; i++) {
+if board 
 }
+ }
 
 
 function getUserCoordinatePlacement() {
@@ -32,7 +36,7 @@ if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || board[row][col]
 console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g., 1 2");
 getUserCoordinatePlacement();
  } else {// conditions for accepting user input. Where this input goes.
-board[row][col] = currentUser;
+board[row-1][col-1] = currentUser; // adjusting for index vs. shown value offset
 boardReveal();
 if (winCheck()) {
 console.log("You Win! Play again?");
@@ -46,6 +50,12 @@ getUserCoordinatePlacement();
 }
 }
 });
+}
+
+function embark() {
+    console.log("Welcome to the wonderful world of TIC TAC TOE! \n  Prepare to have your heart set on fire \n as you duel to discover the superior Tic-Tac-Toe-er. \n This is a hotseat game. Either practice by playing by yourself against yourself, or ask a friend to join you. \n Have fun!")
+    boardReveal()
+    getUserCoordinatePlacement()
 }
 
 embark()
