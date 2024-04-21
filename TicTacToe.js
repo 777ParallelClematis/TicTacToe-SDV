@@ -10,6 +10,9 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
     [["-"], ["-"], ["-"]],
     [["-"], ["-"], ["-"]], 
  ];
+
+ let currentUser = "X"
+ 
 // function to reveal the board. 
  function boardReveal() {
     console.log(board.map(row => row.join (" | ")).join("\n---------\n"))// first this joins the rows, and then the columns. 
@@ -23,24 +26,26 @@ function embark() {
 
 
 function getUserCoordinatePlacement() {
-    rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`), (input) => {
-        const [row, col] = input.split(" ").map(num => parseInt(num))
-if (isNaN(row) || isNaN(col) || row <0 || row > 2 || col < 0 || board[row][col] != "-")// conditions for rejecting user input
-console.log("Invalid move, try again. Ensure your coordinates are in the correct format, eg// 1 2") 
-getUserCoordinatePlacement()
-    } else { // conditions for accepting user input. Where this input goes. 
-        board[row][column] = currentUser
-        boardReveal() 
-        if(winCheck()) {
-            console.log("You Win! Play again?")
-            rl.close()
-        } else if (fullBoard()) {
-            console.log ("No winner, its a draw, Try again")
-            rl.close()
-        } else {
-            currentUser = currentUser === "X" ? "0" : "X"
-            getUserCoordinatePlacement()
-        }
+rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please`, (input) => {
+const [row, col] = input.split(" ").map(num => parseInt(num));
+if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || board[row][col] != "-") { // conditions for rejecting user input
+console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g., 1 2");
+getUserCoordinatePlacement();
+ } else {// conditions for accepting user input. Where this input goes.
+board[row][col] = currentUser;
+boardReveal();
+if (winCheck()) {
+console.log("You Win! Play again?");
+rl.close();
+} else if (fullBoard()) {
+console.log("No winner, it's a draw, Try again");
+rl.close();
+} else {
+currentUser = currentUser === "X" ? "O" : "X";
+getUserCoordinatePlacement();
 }
+}
+});
 }
 
+embark()
