@@ -20,13 +20,23 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
 
  function winCheck() {
 // diagonals, horizontals and verticals
-// verticals 
-while winCheck() {
-    
+// verticals "y" value, outer array
 for (let i = 0; i < 3; i++) {
-if board 
+if (board[0][i] === "X" || "O" && board[1][i] === "X" || "O" && board[2][i])
+return true
 }
- }
+// horizontals "x" value, inner array
+for (let i = 0; i <3; i++) {
+ if (board[][] === "X" || "O" && board[][] === "X" || "O" && board[][])
+ return true
+
+}
+// check diagonals
+for (let i = 0; i <3; i++) {
+ if (board[][] === "X" || "O" && board[][] === "X" || "O" && board[][])
+}
+}
+
 
 
 function getUserCoordinatePlacement() {
