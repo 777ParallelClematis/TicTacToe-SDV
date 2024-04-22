@@ -1,7 +1,7 @@
 // need to declare all variables here (or is good practice to at least)
 const readline = require('readline'); // Readline is an API that is part of the node.js package
 
-const rl = readline.Interface({ // creates an "instance" of readline - enables it to be used in the rest of the program
+const rl = readline.createInterface({ // creates an "instance" of readline - enables it to be used in the rest of the program for collecting user inputs 
     input: process.stdin, // enables input to happen - 
     output: process.stdout // enables output to happen
 })
@@ -19,7 +19,7 @@ const rl = readline.Interface({ // creates an "instance" of readline - enables i
  }
 
  function isBoardFull () {
-    return board.every(row => row.every(cell => cell !=="-"))
+    return board.every(row => row.every(cell => cell !==" - "))
  }
 
  function winCheck() {
@@ -47,8 +47,8 @@ function getUserCoordinatePlacement() {
 rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please :  `, (input) => {
     const [row, col] = input.split(" ").map(num => parseInt(num));
 
-    if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || board[row][col] !== "-") { // conditions for rejecting user input
-console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g., 1 2");
+    if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || col >2) { // conditions for rejecting user input
+console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g// 1 2");
 getUserCoordinatePlacement();
  } 
     else {// conditions for accepting user input. Where this input goes.
@@ -71,7 +71,7 @@ getUserCoordinatePlacement();
 }
 
 function embark() {
-    console.log("Welcome to the wonderful world of TIC TAC TOE! \n  Prepare to have your heart set on fire \n as you duel to discover the superior Tic-Tac-Toe-er. \n This is a hotseat game. Either practice by playing by yourself against yourself, or ask a friend to join you. \n Have fun!")
+    console.log("Welcome to  \n [T][I][C] \n[T][A][C] \n [T][O][E] \n This is a hotseat game, ask a friend to join you or verse yourself \n Have fun!")
     boardReveal()
     getUserCoordinatePlacement()
 }
