@@ -1,10 +1,7 @@
 // need to declare all variables here (or is good practice to at least)
-const readline = require('readline'); // Readline is an API that is part of the node.js package
+const readlineSync = require('readline-sync'); // Readline is an API that is part of the node.js package
 
-const rl = readline.createInterface({ // creates an "instance" of readline - enables it to be used in the rest of the program for collecting user inputs 
-    input: process.stdin, // enables input to happen - 
-    output: process.stdout // enables output to happen
-})
+
 let board = [ //creating the board as an array, this will later allow me to access each 'cell' by the index functions eg// board [1][2]
 ["-", "-", "-"],
 ["-", "-", "-"],
@@ -40,39 +37,28 @@ if ((board[0][0] === board[1][1] && board[1][1] === board[2][2] || board[0][2] =
     (board[1][1] === "X" || board[1][1] === "O")) {return true}
 return false;
 }
+// function to check the format of user input, after knowing its not "exit" to stop the game. It checks that the input is two numbers (1, 2 or 3) separated by a space. 
+function checkFormat(){
+var regex = /^(1|2|3)\s(1|2|3)$/
+}
+
+if (regex.test(input)) {
+    return true} else{
+        return false }
 
 
 // function to get user coordinate placement, validate 
 function getUserCoordinatePlacement() {
-rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please :  `, (input) => {
-    const [row, col] = input.split(" ").map(num => parseInt(num));
-if ("stop"||"exit") { 
+const userInput = readlineSync.question("Please enter the numeric coordinates of where you;d like your tile to be placed, eg// 1 2 OR (1,2)")
+ if (userInput.stringToLowerCase = "exit") {
     console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again ")
     process.exit(0)
-}
-    if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || col >2) { // conditions for rejecting user input
-console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g// 1 2");
-getUserCoordinatePlacement();
- } 
-    else {// conditions for accepting user input. Where this input goes.
-board[row-1][col-1] = currentUser; // adjusting for index vs. shown value offset
-boardReveal();
-      if (winCheck()) {
-console.log("You Win! Play again?");
-rl.close();
-}    
-     else if (isBoardFull()) {
-console.log("No winner, it's a draw, Try again");
-rl.close();
-} 
-      else {
-// monkey business
-getUserCoordinatePlacement();
-}
-}
-});
+ }
+ 
+ else {(input) => {const [row, col] = input.split(" ").map(num => parseInt(num))}
 }
 
+}
 function embark() {
     console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Have fun!")
     boardReveal()
