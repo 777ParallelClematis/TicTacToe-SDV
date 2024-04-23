@@ -55,7 +55,9 @@ const userInput = readlineSync.question("Please enter the numeric coordinates of
     process.exit(0)
  }
  
- else {(input) => {const [row, col] = input.split(" ").map(num => parseInt(num))}
+ else checkFormat(input)
+ 
+ {(input) => {const [row, col] = input.split(" ").map(num => parseInt(num))}
 }
 
 }
