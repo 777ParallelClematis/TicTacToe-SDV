@@ -5,13 +5,13 @@ const rl = readline.createInterface({ // creates an "instance" of readline - ena
     input: process.stdin, // enables input to happen - 
     output: process.stdout // enables output to happen
 })
- let board = [ //creating the board as an array, this will later allow me to access each 'cell' by the index functions eg// board [1][2]
-    [["-"], ["-"], ["-"]],
-    [["-"], ["-"], ["-"]],
-    [["-"], ["-"], ["-"]], 
- ];
+let board = [ //creating the board as an array, this will later allow me to access each 'cell' by the index functions eg// board [1][2]
+["-", "-", "-"],
+["-", "-", "-"],
+["-", "-", "-"]] 
 
- let currentUser = "X" || "O"
+ let turn = 0
+// FUNCTIONS 
 
 // function to reveal the board
  function boardReveal() {
@@ -21,7 +21,7 @@ const rl = readline.createInterface({ // creates an "instance" of readline - ena
  function isBoardFull () {
     return board.every(row => row.every(cell => cell !==" - "))
  }
-
+// function to check if there is a winner. Vertically, horizontally and diagonals
  function winCheck() {
     // Check verticals
 for (let i = 0; i < 3; i++) {
@@ -42,11 +42,14 @@ return false;
 }
 
 
-
+// function to get user coordinate placement, validate 
 function getUserCoordinatePlacement() {
 rl.question(`${currentUser}, your turn, enter where you'd like your tile to be placed. Numerically in the format (row column), please :  `, (input) => {
     const [row, col] = input.split(" ").map(num => parseInt(num));
-
+if ("stop"||"exit") { 
+    console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again ")
+    process.exit(0)
+}
     if (isNaN(row) || isNaN(col) || row < 0 || row > 2 || col < 0 || col >2) { // conditions for rejecting user input
 console.log("Invalid move, try again. Ensure your coordinates are in the correct format, e.g// 1 2");
 getUserCoordinatePlacement();
@@ -63,7 +66,7 @@ console.log("No winner, it's a draw, Try again");
 rl.close();
 } 
       else {
-currentUser === "X" ? "O" : "X";
+// monkey business
 getUserCoordinatePlacement();
 }
 }
@@ -71,7 +74,7 @@ getUserCoordinatePlacement();
 }
 
 function embark() {
-    console.log(" Welcome to  \n [T][I][C] \n [T][A][C] \n [T][O][E] \n This is a hotseat game, ask a friend to join you or verse yourself \n Have fun!")
+    console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Have fun!")
     boardReveal()
     getUserCoordinatePlacement()
 }
