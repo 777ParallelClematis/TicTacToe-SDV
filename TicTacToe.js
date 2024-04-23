@@ -11,11 +11,11 @@ const rl = readline.createInterface({ // creates an "instance" of readline - ena
     [["-"], ["-"], ["-"]], 
  ];
 
- let currentUser = "X"
+ let currentUser = "X" || "O"
 
-// function to reveal the board. 
+// function to reveal the board
  function boardReveal() {
-    console.log(board.map(row => row.join (" | ")).join("\n---------\n"))// first this joins the rows, and then the columns. 
+    console.log(board.map(row => row.join (" | ")).join("\n---------\n"))// first this joins the rows, and then the columns. escape c
  }
 
  function isBoardFull () {
@@ -26,13 +26,13 @@ const rl = readline.createInterface({ // creates an "instance" of readline - ena
     // Check verticals
 for (let i = 0; i < 3; i++) {
 if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === "X" || board[0][i] === "O")) {
-return true}
+return false}
                             }
  
 // Check horizontals
 for (let i = 0; i < 3; i++) {
 if ((board[i][0] === board[i][1] && board[i][1] === board[i][2]) && (board[i][0] === "X" || board[i][0] === "O")) {
-return true}
+return false}
                             }
 
 // Check diagonals
@@ -63,7 +63,7 @@ console.log("No winner, it's a draw, Try again");
 rl.close();
 } 
       else {
-currentUser = currentUser === "X" ? "O" : "X";
+currentUser === "X" ? "O" : "X";
 getUserCoordinatePlacement();
 }
 }
@@ -71,7 +71,7 @@ getUserCoordinatePlacement();
 }
 
 function embark() {
-    console.log("Welcome to  \n [T][I][C] \n[T][A][C] \n [T][O][E] \n This is a hotseat game, ask a friend to join you or verse yourself \n Have fun!")
+    console.log(" Welcome to  \n [T][I][C] \n [T][A][C] \n [T][O][E] \n This is a hotseat game, ask a friend to join you or verse yourself \n Have fun!")
     boardReveal()
     getUserCoordinatePlacement()
 }
