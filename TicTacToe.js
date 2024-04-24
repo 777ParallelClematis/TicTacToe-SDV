@@ -9,14 +9,27 @@ let board = [ //creating the board as an array, this will later allow me to acce
 let row = 1
 let col = 1
 // determining what turn is assigned either X or O. Player X will go first for the first turn. The cycle increments with every valid input. 
-let turn = 1;
-let currentUser;
-if (turn % 2 === 0) {
-  currentUser = "X";
+ let turn = 0
+let currentUser
+if (turn % 2 === 0) { 
+  currentUser = "X"; 
 } else {
-  currentUser = "O";
+  currentUser = "O"; 
 }
 
+function isBoardFull() => {
+    let 
+}
+
+let cellCount = board.
+
+if cell = " - ", cellCount++
+else``
+
+if cellCount = 9
+// count every element of the array that is not equal to " - "
+// pull every element of the array within square brackets that is not equal to " - "
+// pull all indexes (rows), and then all col values
 // FUNCTIONS 
 
 // function to reveal the board
@@ -24,13 +37,30 @@ if (turn % 2 === 0) {
     console.log(board.map(row => row.join ("|")).join("\n------------\n"))// first this joins the rows, and then the columns. escape characters "\n" create a new line in the terminal
  }
 // function to check if the board is full 
- function isBoardFull () {
-    return board.every(row => row.every(cell => cell !==" - "))
- }
+// function isBoardFull () {
+//    return board.every(row => row.every(cell => cell !==" - "))
+// }
 // function to check if there is a winner. Vertically, horizontally and diagonals. Need to adjust these to work with the adjustments I made. 
- /*function winCheck() {
+ function winCheck(board) {
+    // check diagonals
+if (board[1][1]=== board[2][2] == board[3][3]|| board[3][1] == board[2][2] === board [3][1]) {
+    return true
+}
+ }
+// check horizontals
+/*if else (board) {
+    return true
+}
+// check verticals
+if else 
+
+else {return false}
+ }
+
+*/
+
     // Check verticals
-for (let i = 0; i < 3; i++) {
+/*for (let i = 0; i < 3; i++) {
 if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === "X" || board[0][i] === "O")) {
 return false}
                             }
@@ -62,21 +92,20 @@ function getUserCoordinatePlacement() {
 let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates of where you/'d like your tile to be placed, separated by a space, eg// 1 2:  `)
  if (userInput.toLowerCase() == "exit") {
     console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again ")
-    process.exit(1)
+    process.exit(1) // brackets make the process of exiting "true"
  }
  
 else if (checkFormat(userInput) == true){
-    console.log(userInput)
-row = userInput.substring(2,3)// first character represents position
-col = userInput.substring(0,1) // second represents number of characrers retrieved
-console.log(`row: ${row} col: ${col}`)
+row = userInput.substring(2,3)
+col = userInput.substring(0,1)
    row--
    col--
     if (cellIsEmpty = true) {
-     board[col][row] = currentUser
-     turn++
+     board[col][row] = " " + currentUser + " " // the spaces either side of this allow proper spacing on the board
+     turn+1
      boardReveal()
-     console.log(col + " " + row)
+     console.log(turn)
+     console.log(currentUser)
     } else {
         console.log("This cell is already taken! Try again")
         getUserCoordinatePlacement()
