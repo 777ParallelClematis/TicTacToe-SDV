@@ -1,5 +1,5 @@
 // need to declare all variables here (or is good practice to at least)
-const readlineSync = require('readline-sync'); // Readline is an API that is part of the node.js package
+const readlineSync = require('readline-sync'); // 
 
 
 let board = [ //creating the board as an array, this will later allow me to access each 'cell' by the index functions eg// board [1][2]
@@ -17,16 +17,22 @@ if (turn % 2 === 0) {
   currentUser = "O"; 
 }
 
-function isBoardFull() => {
-    let 
+
+let cellCount = 0
+for (let i = 0; i < board.length; i++) {
+for (let j = 0; j < board[i].length; j++) {
+if (board[i][j] !== " - ") {
+
+            cellCount++;
+        }
+    }
 }
 
-let cellCount = board.
+// Output the cell count
+console.log("Cell count:", cellCount);
 
-if cell = " - ", cellCount++
-else``
 
-if cellCount = 9
+
 // count every element of the array that is not equal to " - "
 // pull every element of the array within square brackets that is not equal to " - "
 // pull all indexes (rows), and then all col values
@@ -40,13 +46,28 @@ if cellCount = 9
 // function isBoardFull () {
 //    return board.every(row => row.every(cell => cell !==" - "))
 // }
-// function to check if there is a winner. Vertically, horizontally and diagonals. Need to adjust these to work with the adjustments I made. 
- function winCheck(board) {
-    // check diagonals
-if (board[1][1]=== board[2][2] == board[3][3]|| board[3][1] == board[2][2] === board [3][1]) {
-    return true
+
+/*if ( board  ){
+    vertWinCheck = true
 }
- }
+
+if ( conditions ) {
+    horizWinCheck = true
+}
+
+if ( board[0][0] = board[1][1] = board[2][2] ) {
+    diagWinCheck = true
+}
+*/
+if (diagWinCheck) {
+    winCheck = true
+} else {
+    winCheck = false
+}
+
+
+
+ // winCheck is true if vertical or horizontal or diagonal values winCheck is true
 // check horizontals
 /*if else (board) {
     return true
@@ -106,6 +127,12 @@ col = userInput.substring(0,1)
      boardReveal()
      console.log(turn)
      console.log(currentUser)
+     if (winCheck = true){ 
+        console.log(`${currentUser} Wins!`)}
+        else {
+            turn+1
+            boardReveal()
+     }
     } else {
         console.log("This cell is already taken! Try again")
         getUserCoordinatePlacement()
