@@ -18,18 +18,15 @@ if (turn % 2 === 0) {
 }
 
 
-let cellCount = 0
-for (let i = 0; i < board.length; i++) {
-for (let j = 0; j < board[i].length; j++) {
-if (board[i][j] !== " - ") {
+let cellCount = 0;
 
-            cellCount++;
-        }
+for (let row = 0; row < board.length; row++) {
+  for (let col = 0; col < board[row].length; col++) {
+    if (board[row][col] !== " - ") {
+      cellCount++;
     }
+  }
 }
-
-// Output the cell count
-console.log("Cell count:", cellCount);
 
 
 
@@ -46,7 +43,7 @@ console.log("Cell count:", cellCount);
 // function isBoardFull () {
 //    return board.every(row => row.every(cell => cell !==" - "))
 // }
-
+/*
 if ( (board[0][0] == "X" | "O" && board[1][0]) | 
      (board )
 ){
@@ -56,12 +53,18 @@ if ( (board[0][0] == "X" | "O" && board[1][0]) |
 if ( conditions ) {
     horizWinCheck = true
 }
-
-if ( board[0][0] = board[1][1] = board[2][2] ) {
-    diagWinCheck = true
+*/
+let diagWinCheck
+if ((board[0][0] === "X" || board[0][0] === "O") &&
+    (board[1][1] === "X" || board[1][1] === "O") &&
+    (board[2][2] === "X" || board[2][2] === "O") ||
+    (board[0][2] === "X" || board[0][2] === "O") &&
+    (board[1][1] === "X" || board[1][1] === "O") &&
+    (board[2][0] === "X" || board[2][0] === "O")) {
+    diagWinCheck = true;
 }
 
-if (diagWinCheck | horizWinCheck | vertWinCheck) {
+if (diagWinCheck) {
     winCheck = true
 } else {
     winCheck = false
@@ -125,7 +128,7 @@ col = userInput.substring(0,1)
    col--
     if (cellIsEmpty = true) {
      board[col][row] = " " + currentUser + " " // the spaces either side of this allow proper spacing on the board
-     turn+1
+     turn++
      boardReveal()
      console.log(turn)
      console.log(currentUser)
