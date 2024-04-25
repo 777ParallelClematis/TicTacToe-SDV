@@ -9,7 +9,7 @@ let board = [ //creating the board as an array, this will later allow me to acce
 let row = 1
 let col = 1
 // determining what turn is assigned either X or O. Player X will go first for the first turn. The cycle increments with every valid input. 
- let turn = 0
+ var turn = 0
 let currentUser
 if (turn % 2 === 0) { 
   currentUser = "X"; 
@@ -47,7 +47,9 @@ console.log("Cell count:", cellCount);
 //    return board.every(row => row.every(cell => cell !==" - "))
 // }
 
-/*if ( board  ){
+if ( (board[0][0] == "X" | "O" && board[1][0]) | 
+     (board )
+){
     vertWinCheck = true
 }
 
@@ -58,8 +60,8 @@ if ( conditions ) {
 if ( board[0][0] = board[1][1] = board[2][2] ) {
     diagWinCheck = true
 }
-*/
-if (diagWinCheck) {
+
+if (diagWinCheck | horizWinCheck | vertWinCheck) {
     winCheck = true
 } else {
     winCheck = false
