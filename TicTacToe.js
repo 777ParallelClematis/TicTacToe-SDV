@@ -17,72 +17,33 @@ let currentUser = "X"
     console.log(board.map(row => row.join ("|")).join("\n------------\n"))// first this joins the rows, and then the columns. escape characters "\n" create a new line in the terminal
  }
 
-/*
-if ( (board[0][0] == "X" | "O" && board[1][0]) | 
-     (board )
-){
-    vertWinCheck = true
+
+
+ function winCheck() {
+    // Check for vertical wins
+    for (let i = 0; i < 3; i++) {
+        if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === "X" || board[0][i] === "O")) {
+            return true; // Vertical win found
+        }
+    }
+
+    // Check for horizontal wins
+    for (let i = 0; i < 3; i++) {
+        if ((board[i][0] === board[i][1] && board[i][1] === board[i][2]) && (board[i][0] === "X" || board[i][0] === "O")) {
+            return true; // Horizontal win found
+        }
+    }
+
+    // Check for diagonal wins
+    if (((board[0][0] === board[1][1] && board[1][1] === board[2][2]) || (board[0][2] === board[1][1] && board[1][1] === board[2][0])) &&
+        (board[1][1] === "X" || board[1][1] === "O")) {
+        return true; // Diagonal win found
+    }
+
+    return false; // No win found
 }
 
-if ( conditions ) {
-    horizWinCheck = true
-}
-*/
 
-function winCheck() {
-    // win conditions, placeholder for now
-   }
-/* let diagWinCheck
-if ((board[0][0] === "X" || board[0][0] === "O") &&
-    (board[1][1] === "X" || board[1][1] === "O") &&
-    (board[2][2] === "X" || board[2][2] === "O") ||
-    (board[0][2] === "X" || board[0][2] === "O") &&
-    (board[1][1] === "X" || board[1][1] === "O") &&
-    (board[2][0] === "X" || board[2][0] === "O")) {
-    diagWinCheck = true
-} else {
-    diagWinCheck = false
-}
-
-if (diagWinCheck) {
-    winCheck = true
-} else {
-    winCheck = false
-}
-
-*/
-
- // winCheck is true if vertical or horizontal or diagonal values winCheck is true
-// check horizontals
-/*if else (board) {
-    return true
-}
-// check verticals
-if else 
-
-else {return false}
- }
-
-*/
-
-    // Check verticals
-/*for (let i = 0; i < 3; i++) {
-if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === "X" || board[0][i] === "O")) {
-return false}
-                            }
- 
-// Check horizontals
-for (let i = 0; i < 3; i++) {
-if ((board[i][0] === board[i][1] && board[i][1] === board[i][2]) && (board[i][0] === "X" || board[i][0] === "O")) {
-return false}
-                            }
-
-// Check diagonals
-if ((board[0][0] === board[1][1] && board[1][1] === board[2][2] || board[0][2] === board[1][1] && board[1][1] === board[2][0]) &&
-    (board[1][1] === "X" || board[1][1] === "O")) {return true}
-return false;
-}
-*/
 // function to check the format of user input, after knowing its not "exit" to stop the game. It checks that the input is two numbers (1, 2 or 3) separated by a space. 
 function checkFormat(input) {
     var regex = /^(1|2|3)\s(1|2|3)$/
