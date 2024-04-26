@@ -20,27 +20,29 @@ let currentUser = "X"
 
 
  function winCheck() {
+    
+    
     // Check for vertical wins
     for (let i = 0; i < 3; i++) {
-        if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === "X" || board[0][i] === "O")) {
-            return true; // Vertical win found
+        if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === " X " || board[0][i] === " O ")) {
+            return true // Vertical win found
         }
     }
 
     // Check for horizontal wins
     for (let i = 0; i < 3; i++) {
-        if ((board[i][0] === board[i][1] && board[i][1] === board[i][2]) && (board[i][0] === "X" || board[i][0] === "O")) {
-            return true; // Horizontal win found
+        if ((board[i][0] === board[i][1] && board[i][1] === board[i][2]) && (board[i][0] === " X " || board[i][0] === " O ")) {
+            return true // Horizontal win found
         }
     }
 
     // Check for diagonal wins
     if (((board[0][0] === board[1][1] && board[1][1] === board[2][2]) || (board[0][2] === board[1][1] && board[1][1] === board[2][0])) &&
-        (board[1][1] === "X" || board[1][1] === "O")) {
-        return true; // Diagonal win found
+        (board[1][1] === " X " || board[1][1] === " O ")) {
+        return true // Diagonal win found
     }
 
-    return false; // No win found
+    else {return false} // No win found
 }
 
 
