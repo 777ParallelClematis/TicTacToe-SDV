@@ -8,26 +8,24 @@ let board = [ //creating the board as an array, this will later allow me to acce
 [" - ", " - ", " - "]] 
 let row = 1
 let col = 1
-// determining what turn is assigned either X or O. Player X will go first for the first turn. The cycle increments with every valid input. 
- var turn = 0
-let currentUser
-if (turn % 2 === 0) { 
-  currentUser = "X"; 
-} else {
-  currentUser = "O"; 
-}
-
-
-let cellCount = 0;
+ 
+let cellCount = 0
 
 for (let row = 0; row < board.length; row++) {
   for (let col = 0; col < board[row].length; col++) {
     if (board[row][col] !== " - ") {
-      cellCount++;
+      cellCount++
     }
   }
 }
+let currentUser
+if (cellCount === 1 || cellCount === 3 || cellCount === 5 || cellCount === 7 || cellCount === 9) {
+  currentUser = "X"; // Set currentUser to "X" if cellCount is odd
+} else {
+  currentUser = "O"; // Set currentUser to "O" if cellCount is even
+}
 
+console.log(currentUser); // Output: X or O, depending on the value of cellCount
 
 
 // count every element of the array that is not equal to " - "
@@ -61,7 +59,9 @@ if ((board[0][0] === "X" || board[0][0] === "O") &&
     (board[0][2] === "X" || board[0][2] === "O") &&
     (board[1][1] === "X" || board[1][1] === "O") &&
     (board[2][0] === "X" || board[2][0] === "O")) {
-    diagWinCheck = true;
+    diagWinCheck = true
+} else {
+    diagWinCheck = false
 }
 
 if (diagWinCheck) {
@@ -118,7 +118,7 @@ function getUserCoordinatePlacement() {
 let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates of where you/'d like your tile to be placed, separated by a space, eg// 1 2:  `)
  if (userInput.toLowerCase() == "exit") {
     console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again ")
-    process.exit(1) // brackets make the process of exiting "true"
+    process.exit(1) // bracket value makes the process of exiting "true"
  }
  
 else if (checkFormat(userInput) == true){
@@ -128,26 +128,36 @@ col = userInput.substring(0,1)
    col--
     if (cellIsEmpty = true) {
      board[col][row] = " " + currentUser + " " // the spaces either side of this allow proper spacing on the board
-     turn++
      boardReveal()
-     console.log(turn)
+     console.log(cellCount)
      console.log(currentUser)
-     if (winCheck = true){ 
+     if (winCheck == true){ 
         console.log(`${currentUser} Wins!`)}
         else {
-            turn+1
             boardReveal()
+            console.log(cellCount)
+            console.log(currentUser)
+            console.log(cellCount)
+            console.log(currentUser)
+            getUserCoordinatePlacement()
      }
     } else {
         console.log("This cell is already taken! Try again")
         getUserCoordinatePlacement()
+        console.log(cellCount)
+        console.log(currentUser)
     }
+} 
+else {
+    console.log("Invalid input, try again")
+    getUserCoordinatePlacement()
 }
-getUserCoordinatePlacement()
 }
 function embark() {
-    console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Have fun!")
+    console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Exit the game at any time by entering 'exit' into the terminal \n Have fun!")
     boardReveal()
+    console.log(cellCount)
+    console.log(currentUser)
     getUserCoordinatePlacement()
 }
 
