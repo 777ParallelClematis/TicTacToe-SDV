@@ -57,10 +57,10 @@ let currentUser = "X"
 
 
 // function to check the format of user input, after knowing its not "exit" to stop the game. It checks that the input is two numbers (1, 2 or 3) separated by a space. 
-function checkFormat(input) {
-    var regex = /^(1|2|3)\s(1|2|3)$/
+const checkFormat = (input) => {
+    const regex = /^(1|2|3)\s(1|2|3)$/
     return regex.test(input)
-  }
+}
 
 // function to get user coordinate placement, validate 
 function getUserCoordinatePlacement() {
@@ -68,7 +68,7 @@ function getUserCoordinatePlacement() {
     let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates of where you'd like your tile to be placed, separated by a space, e.g., 1 2: `)
     if (userInput.toLowerCase() === "exit") {
       console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again.")
-      process.exit(1)
+      process.exit(1) 
     } else if (checkFormat(userInput)) {
       col = parseInt(userInput.substring(2, 3)) - 1;
       row = parseInt(userInput.substring(0, 1)) - 1;
@@ -102,5 +102,4 @@ function embark() {
 
 embark()
 
-// need to add draw condition - if boardisfull return "Its a draw!"
-// option to replay if board won 
+// option to replay if board won rather than entering it into the terminal
