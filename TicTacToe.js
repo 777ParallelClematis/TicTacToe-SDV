@@ -9,15 +9,25 @@ let board = [ //creating the board as an array, this will later allow me to acce
 
 let row = 0
 let col = 0
-let cellCount = 0
 let currentUser = "X"
+
 
 // function to reveal the board
  function boardReveal() {
     console.log(board.map(row => row.join ("|")).join("\n------------\n"))// first this joins the rows, and then the columns. escape characters "\n" create a new line in the terminal
  }
 
-
+ function cellCount(board) {
+    let count = 0;
+    for (let row = 0; row < board.length; row++) {
+        for (let col = 0; col < board[row].length; col++) {
+            if (board[row][col] !== " - ") {
+                count++
+            }
+        }
+    }
+    return count
+}
 
  function winCheck() {
     
@@ -54,6 +64,7 @@ function checkFormat(input) {
 
 // function to get user coordinate placement, validate 
 function getUserCoordinatePlacement() {
+    if (cellCount(board) < 9) {
     let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates of where you'd like your tile to be placed, separated by a space, e.g., 1 2: `)
     if (userInput.toLowerCase() === "exit") {
       console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again.")
@@ -64,7 +75,6 @@ function getUserCoordinatePlacement() {
       if (board[row][col] === " - ") {
         board[row][col] = " " + currentUser + " "
         boardReveal()
-        cellCount++
         if (winCheck()) {
           console.log(`${currentUser} Wins!`);
         } else {
@@ -79,13 +89,18 @@ function getUserCoordinatePlacement() {
       console.log("Invalid input, try again.")
       getUserCoordinatePlacement()
     }
+} else { console.log("Its a draw! Try again by entering 'node TicTacToe.js' into your terminal")}
   }
+
+
 function embark() {
     console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Exit the game at any time by entering 'exit' into the terminal \n Have fun!")
     boardReveal()
-    console.log(cellCount)
     console.log(currentUser)
     getUserCoordinatePlacement()
 }
 
 embark()
+
+// need to add draw condition - if boardisfull return "Its a draw!"
+// option to replay if board won 
