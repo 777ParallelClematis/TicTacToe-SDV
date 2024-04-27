@@ -76,7 +76,12 @@ function getUserCoordinatePlacement() {
         board[row][col] = " " + currentUser + " "
         boardReveal()
         if (winCheck()) {
-          console.log(`${currentUser} Wins!`);
+          let winPlayAgain = readlineSync.question(`Player ${currentUser} wins! Play again? `)
+          if (winPlayAgain.toLowerCase()=== "Yes"){
+            embark()
+          } else {
+            process.exit(1)
+          }
         } else {
           currentUser = currentUser === "X" ? "O" : "X"
           getUserCoordinatePlacement()
@@ -89,9 +94,14 @@ function getUserCoordinatePlacement() {
       console.log("Invalid input, try again.")
       getUserCoordinatePlacement()
     }
-} else { console.log("Its a draw! Try again by entering 'node TicTacToe.js' into your terminal")}
-  }
-
+} else { let replayDraw = readlineSync.question("Its a draw! Play again? (Yes/No)")
+if (replayDraw.toLowerCase() === "Yes") {
+  embark
+} else {
+  process.exit(1)
+}
+}
+}
 
 function embark() {
     console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Exit the game at any time by entering 'exit' into the terminal \n Have fun!")
