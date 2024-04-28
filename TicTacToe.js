@@ -1,5 +1,17 @@
-// need to declare all variables here (or is good practice to at least)
-const readlineSync = require('readline-sync'); // 
+function checkForReadlineSync() {
+  try {require.resolve("readline-sync")
+  console.log("Woo hoo! readline sync (part of node.js) is installed, lets get started!")
+
+  } catch (error) {
+    console.error ("Uh oh, looks like you don't have readline-sync installed. \nThe game needs this to recieve and interpret your input")
+    console.error ("To install readline sync, make sure you have node.js downloaded and then enter the following command in your terminal")
+    console.error("npm install readline-sync")
+  }
+}
+checkForReadlineSync()
+
+
+const readlineSync = require('readline-sync'); 
 
 
 let board = [ //creating the board as an array, this will later allow me to access each 'cell' by the index functions eg// board [1][2]
@@ -9,13 +21,13 @@ let board = [ //creating the board as an array, this will later allow me to acce
 
 let row = 0
 let col = 0
-let currentUser = "X"
+let currentUser = "X" // "default" user is X, this switches later
 
 
 // function to reveal the board
  function boardReveal() {
     console.log(board.map(row => row.join ("|")).join("\n------------\n"))// first this joins the rows, and then the columns. escape characters "\n" create a new line in the terminal
- }
+ } // a function to join the board correctly
 
  function cellCount(board) {
     let count = 0;
@@ -77,7 +89,7 @@ function getUserCoordinatePlacement() {
         boardReveal()
         if (winCheck()) {
           let winPlayAgain = readlineSync.question(`Player ${currentUser} wins! Play again? `)
-          if (winPlayAgain.toLowerCase()=== "Yes"){
+          if (winPlayAgain.toLowerCase()=== "yes"){
             embark()
           } else {
             process.exit(1)
@@ -111,5 +123,3 @@ function embark() {
 }
 
 embark()
-
-// option to replay if board won rather than entering it into the terminal
