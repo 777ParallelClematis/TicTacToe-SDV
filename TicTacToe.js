@@ -9,8 +9,8 @@ function checkForReadlineSync() {
   }
 }
 checkForReadlineSync()
-// necessitating readline sync, the game will not function without this
-const readlineSync = require('readline-sync')
+// necessitating readline sync, the game will not function without this. 
+const readlineSync = require('readline-sync') // imports it into the program for use 
 
 // declaring variables
 let board = [ //creating the board as an array, this will later allow me to access each 'cell' by the index functions eg// board [1][2]
@@ -74,7 +74,7 @@ const checkFormat = (input) => {
 // function to get user coordinate placement, validate it, and apply input correctly. has 3 readline-sync questions for the user. 
 function getUserCoordinatePlacement() {
     if (cellCount(board) < 9) {
-    let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates (row then column) of where you'd like your tile to be placed, separated by a space, e.g., 1 2: `)
+    let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates (row then column) of where you'd like \n your tile to be placed, separated by a space, e.g., 1 2: `)
     if (userInput.toLowerCase() === "exit") {
       console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again.")
       process.exit(1) 
@@ -115,7 +115,6 @@ if (replayDraw.toLowerCase() === "yes") {
 function embark() {
     console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Exit the game by entering 'exit' into the terminal when you are prompted to place a tile \n Have fun!")
     boardReveal()
-    console.log(currentUser)
     getUserCoordinatePlacement()
 }
 
