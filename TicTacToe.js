@@ -107,7 +107,7 @@ function getUserCoordinatePlacement() {
       getUserCoordinatePlacement()
     }
 } else { let replayDraw = readlineSync.question("Its a draw! Play again? (Yes/No)")
-if (replayDraw.toLowerCase() === "Yes") {
+if (replayDraw.toLowerCase() === "yes") {
   embark
 } else {
   process.exit(1)
