@@ -9,25 +9,24 @@ function checkForReadlineSync() {
   }
 }
 checkForReadlineSync()
+// necessitating readline sync, the game will not function without this
+const readlineSync = require('readline-sync')
 
-
-const readlineSync = require('readline-sync'); 
-
-
+// declaring variables
 let board = [ //creating the board as an array, this will later allow me to access each 'cell' by the index functions eg// board [1][2]
 [" - ", " - ", " - "],
 [" - ", " - ", " - "],
 [" - ", " - ", " - "]] 
-
 let row = 0
 let col = 0
 let currentUser = "X" // "default" user is X, this switches later
 
 
-// function to reveal the board
+// main function hoarde 
+// function to reveal the board correctly and with margins etc. 
  function boardReveal() {
     console.log(board.map(row => row.join ("|")).join("\n------------\n"))// first this joins the rows, and then the columns. escape characters "\n" create a new line in the terminal
- } // a function to join the board correctly
+ } 
 
  function cellCount(board) {
     let count = 0;
@@ -40,10 +39,8 @@ let currentUser = "X" // "default" user is X, this switches later
     }
     return count
 }
-
+// function to check if there is a win on the board
  function winCheck() {
-    
-    
     // Check for vertical wins
     for (let i = 0; i < 3; i++) {
         if ((board[0][i] === board[1][i] && board[1][i] === board[2][i]) && (board[0][i] === " X " || board[0][i] === " O ")) {
@@ -74,10 +71,10 @@ const checkFormat = (input) => {
     return regex.test(input)
 }
 
-// function to get user coordinate placement, validate 
+// function to get user coordinate placement, validate it, and apply input correctly. has 3 readline-sync questions for the user. 
 function getUserCoordinatePlacement() {
     if (cellCount(board) < 9) {
-    let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates of where you'd like your tile to be placed, separated by a space, e.g., 1 2: `)
+    let userInput = readlineSync.question(`Player ${currentUser} Please enter the numeric coordinates (row then column) of where you'd like your tile to be placed, separated by a space, e.g., 1 2: `)
     if (userInput.toLowerCase() === "exit") {
       console.log("You exited the game. Try again any time! Remember, enter 'node TicTacToe.js' into your terminal to play again.")
       process.exit(1) 
@@ -103,7 +100,7 @@ function getUserCoordinatePlacement() {
         getUserCoordinatePlacement()
       }
     } else {
-      console.log("Invalid input, try again.")
+      console.log("Invalid input, try again. Ensure that the format of your answer is numeric, and separated by a space, eg// 2 3.  ")
       getUserCoordinatePlacement()
     }
 } else { let replayDraw = readlineSync.question("Its a draw! Play again? (Yes/No)")
@@ -114,9 +111,9 @@ if (replayDraw.toLowerCase() === "yes") {
 }
 }
 }
-
+// function to embark on the mission of Tic Tac Toe
 function embark() {
-    console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Exit the game at any time by entering 'exit' into the terminal \n Have fun!")
+    console.log(" Welcome to  \n T | I | C \n --------- \n T | A | C \n --------- \n T | O | E \n This is a hotseat game, ask a friend to join you or verse yourself \n Exit the game by entering 'exit' into the terminal when you are prompted to place a tile \n Have fun!")
     boardReveal()
     console.log(currentUser)
     getUserCoordinatePlacement()
